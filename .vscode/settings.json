@@ -12,4 +12,8 @@
     "clang-tidy.compilerArgs": [
         "--config-file=.clang-tidy"
     ],
+    "files.associations": {
+        "atomic": "cpp",
+        "cstdint": "cpp"
+    },
 }
