@@ -36,7 +36,7 @@ jobs:
       # lesson
     - name: run "lessons"
       working-directory: ${{github.workspace}}/build/src/lesson/
-      run: ./lesson
+      run: ./lessons
       
     - name: run "test"
       working-directory: ${{github.workspace}}/build/src/test1/
