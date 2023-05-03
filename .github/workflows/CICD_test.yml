@@ -40,7 +40,7 @@ jobs:
       
     - name: run "test"
       working-directory: ${{github.workspace}}/build/src/test1/
-      run: ./test1
+      run: ./memory_test
             
       
 
