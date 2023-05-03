@@ -12,4 +12,4 @@ set(CMAKE_C_STANDARD_REQUIRED True)
 add_compile_options(-Wall -Wextra -pedantic -O0)
 
 # add an executabel and assign files to it
-add_executable(test1 main.c)
+add_executable(memory_test main.c)
