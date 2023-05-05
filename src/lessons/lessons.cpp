@@ -3,7 +3,6 @@
 #include <memory>
 
 
-
 auto main() -> int
 {
     uint size = 0;
@@ -11,12 +10,12 @@ auto main() -> int
     std::cin >> size;
 
 
-    auto u_ptr = new int[size];
+    auto u_ptr = std::make_unique<int[]>(size);
 
     for(uint i = 0; i < size; i++)
     {
-        u_ptr[i] = i + 1;
-        std::cout << "Element " << i << " ist " << u_ptr[i] << std::endl;  
+        u_ptr.get()[i] = i + 1;
+        std::cout << "Element " << i << " ist " << u_ptr.get()[i] << std::endl;  
     }
 
     return 0;
