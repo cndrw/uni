@@ -9,7 +9,9 @@ auto main() -> int
     std::cout << "Size: ";
 
 
-    auto u_ptr = std::make_shared<int[]>(size);
+    // auto u_ptr = std::make_shared<int[]>(size);
+
+    std::shared_ptr<int[]> u_ptr(new int[size]);
 
     for(uint i = 0; i < size; i++)
     {
