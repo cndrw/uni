@@ -10,7 +10,7 @@ auto main() -> int
     std::cin >> size;
 
 
-    auto u_ptr = std::make_unique<int[]>(size);
+    auto u_ptr = std::make_shared<int[]>(size);
 
     for(uint i = 0; i < size; i++)
     {
