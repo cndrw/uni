@@ -14,6 +14,10 @@ auto main() -> int
     std::shared_ptr<int[]> u_ptr(new int[size]);
 
     auto p = std::make_shared<int>();
+    
+    auto p = std::make_shared<char>();
+    auto p = std::make_shared<int[]>();
+    
 
     for(uint i = 0; i < size; i++)
     {
