@@ -16,7 +16,6 @@ auto main() -> int
     auto p = std::make_shared<int>();
     
     auto e = std::make_shared<char>();
-    auto f = std::make_shared<int[]>();
     
 
     for(uint i = 0; i < size; i++)
