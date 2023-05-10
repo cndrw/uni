@@ -47,25 +47,8 @@ auto main() -> int
 
     double area = triangle.get_area();
 
-<<<<<<< HEAD
-    // auto u_ptr = std::make_shared<int[]>(size);
-
-    std::shared_ptr<int[]> u_ptr(new int[size]);
-
-    auto p = std::make_shared<int>();
-    
-    auto e = std::make_shared<char>();
-    
-
-    for(uint i = 0; i < size; i++)
-    {
-        u_ptr.get()[i] = i + 1;
-        std::cout << "Element " << i << " ist " << u_ptr.get()[i] << std::endl;  
-    }
-=======
     std::cout << "Fläche ist: " << area << std::endl;
     std::cout << "Kosten sind: " << PaintCost::get_cost(area) << std::endl;
->>>>>>> 34ff4ec (10.05)
 
     return 0;
 }
