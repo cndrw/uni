@@ -18,7 +18,15 @@ mkdir "src/$folder_name/test"
 
 touch "src/$folder_name/src/main.cpp"
 
+echo "#include <iostream>
 
+auto main() -> int
+{
+
+}" >> src/$folder_name/src/main.cpp
+
+
+echo "add_subdirectory(./src/$folder_name)" >> CMakeLists.txt
 
 # CMakeLists.txt-Vorlagendatei erstellen
 cat >"src/$folder_name/CMakeLists_template.txt" <<EOF
