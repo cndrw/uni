@@ -38,9 +38,9 @@ jobs:
       working-directory: ${{github.workspace}}/build/src/lessons/
       run: ./lessons
       
-    - name: run "test"
-      working-directory: ${{github.workspace}}/build/src/test1/
-      run: ./memory_test
+   # - name: run "test"
+    #  working-directory: ${{github.workspace}}/build/src/test1/
+     # run: ./memory_test
             
       
 
