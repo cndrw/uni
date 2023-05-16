@@ -25,6 +25,10 @@ auto main() -> int
 
 }" >> src/$folder_name/src/main.cpp
 
+echo "    - name: run \"$folder_name\"
+      working-directory: \${{github.workspace}}/build/src/$folder_name/
+      run: ./${folder_name}_exec" >> .github/workflows/CICD_test.yml
+
 
 echo "add_subdirectory(./src/$folder_name)" >> CMakeLists.txt
 
