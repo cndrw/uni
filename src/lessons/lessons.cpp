@@ -2,53 +2,68 @@
 #include <iostream>
 #include <memory>
 
-
-class Shape
-{
-    public: 
-    void set_width(int8_t width_in)
-    {
-        m_width_ = width_in;
-    }
-
-    void set_height(int8_t height_in)
-    {
-        m_height_ = height_in;
-    }
-
-    protected:
-    int8_t m_width_;
-    int8_t m_height_;
-};
-
-class PaintCost
+class Animal
 {
     public:
-    static auto get_cost(double area) -> double
+    std::string name;
+};
+
+class Cat;
+
+class Bird : public Animal
+{
+    public:
+    explicit Bird(const std::string& name_par)
     {
-        return area * 70;
+        this->name = name_par;
+    }
+
+    void operator+(const Bird& bird);
+    void operator+(const Cat& cat);
+};
+
+class Cat : public Animal
+{
+    public:
+    explicit Cat(const std::string& name_par)
+    {
+        this->name = name_par;
+    }
+
+    void operator+(const Bird& bird)
+    {
+        std::cout << bird.name << " wrid von " << name << " gejagt!" << std::endl;
+    }
+
+    void operator+(const Cat& cat)
+    {
+        std::cout << name << "und " << cat.name << " spielen Zusammen!" << std::endl;
     }
 };
 
-class Triangle : public Shape, public PaintCost
+void Bird::operator+(const Bird& bird)
 {
-    public:
-    auto get_area() -> double
-    {
-        return 0.5f * (m_width_ * m_height_);
-    }
-};
+    std::cout << name << " und " << bird.name << " fliegen zum Süden" << std::endl;
+}
+
+void Bird::operator+(const Cat& cat)
+{
+    std::cout << name << " flieht vor " << cat.name << std::endl;
+}
+
 
 auto main() -> int
 {
-    Triangle triangle;
-    triangle.set_height(5);
-    triangle.set_width(5);
+    Cat cat("Katze1");
+    Cat cat2("Katze2");
+    Bird bird("Vogel1");
+    Bird bird2("Vogel2");
 
-    double area = triangle.get_area();
-
-    std::cout << "Fläche ist: " << area << std::endl;
-    std::cout << "Kosten sind: " << PaintCost::get_cost(area) << std::endl;
+    cat + cat2;
+    cat + bird;
+    bird + cat;
+    bird + bird2;
+    
 
     return 0;
 }
