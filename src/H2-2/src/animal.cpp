@@ -1,6 +1,6 @@
 #include "animals.hpp"
 
- auto Animal::get_feet_number() const -> uint8_t
+ auto Animal::get_feet_amount() const -> uint16_t
  {
-    return feet;
+    return feet_;
  }

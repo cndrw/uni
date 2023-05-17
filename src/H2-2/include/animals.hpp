@@ -6,9 +6,10 @@
 class Animal
 {
     public:
-    uint8_t feet;
+    auto get_feet_amount() const -> uint16_t;
 
-    auto get_feet_number() const -> uint8_t;
+    protected:
+    uint16_t feet_;
 };
 
 class Spider : public Animal
@@ -20,7 +21,7 @@ class Spider : public Animal
 class Mammal : public Animal
 {
     public:
-    Mammal();
+    explicit Mammal(uint16_t feet_amount);
 };
 
 #endif
