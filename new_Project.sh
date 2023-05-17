@@ -82,7 +82,7 @@ include(GoogleTest)
 #target_include_directories(${folder_name}_tests PUBLIC include)
 # discover and add tests to the test list
 
-#gtest_discover_tests(tdd_tests)
+#gtest_discover_tests(${folder_name}_tests)
 EOF
 
 # CMakeLists.txt-Datei erstellen

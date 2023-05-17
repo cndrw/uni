@@ -11,16 +11,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_compile_options(-Wall -Wextra -pedantic -O0)
 
-#add_library(H2-2_lib STATIC src/)
+add_library(H2-2_lib STATIC src/mammal.cpp src/spider.cpp src/animal.cpp)
 
-#target_include_directories(H2-2_lib PUBLIC include)
+target_include_directories(H2-2_lib PUBLIC include)
 
 # Create executable
 add_executable(H2-2_exec src/main.cpp)
 
 target_include_directories(H2-2_exec PRIVATE include)
 
-#target_link_libraries(H2-2_exec PRIVATE H2-2_lib)
+target_link_libraries(H2-2_exec PRIVATE H2-2_lib)
 
 
 
@@ -33,16 +33,16 @@ find_package(GTest REQUIRED)
 # include the gtest CMake stuff
 include(GoogleTest)
 
-#add_executable(H2-2_tests test/)
+add_executable(H2-2_tests test/test_animals.cpp)
 # link the gtest libraries
 
-#target_link_libraries(H2-2_tests PRIVATE GTest::GTest GTest::Main)
+target_link_libraries(H2-2_tests PRIVATE GTest::GTest GTest::Main)
 # link the library we want to test
 
-#target_link_libraries(H2-2_tests PRIVATE H2-2_lib)
+target_link_libraries(H2-2_tests PRIVATE H2-2_lib)
 # add the include directories
 
-#target_include_directories(H2-2_tests PUBLIC include)
+target_include_directories(H2-2_tests PUBLIC include)
 # discover and add tests to the test list
 
-#gtest_discover_tests(tdd_tests)
+gtest_discover_tests(H2-2_tests)
