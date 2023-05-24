@@ -1,6 +1,6 @@
 #include "animals.hpp"
 #include <cstdint>
-#include <iosream>
+#include <iostream>
 
 Spider::Spider(float speed)
 {
@@ -8,7 +8,7 @@ Spider::Spider(float speed)
     feet_ = 8;
 }
 
-void Spider::move(uint16_t new_x, uint16_t new_y) override 
+void Spider::move(uint16_t new_x, uint16_t new_y) 
 {
     std::cout << "i don't know which sound a spide does" << std::endl;
     xpos_ += new_x;
