@@ -83,6 +83,9 @@
         "__verbose_abort": "cpp",
         "ios": "cpp",
         "locale": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "__tree": "cpp"
     },
 }

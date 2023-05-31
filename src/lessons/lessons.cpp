@@ -1,85 +1,75 @@
 #include <cstdint>
 #include <iostream>
-#include <memory>
+#include <string>
 #include <vector>
+#include <memory>
 
 class Animal
 {
-    public:
-    virtual void make_noise() = 0;
-    std::string name;
+   public:
+    virtual void make_noise() const = 0;
 };
 
-class Cat;
+class Bird;
+
+class Cat : public Animal
+{
+   public:
+    void make_noise() const override
+    {
+        std::cout << "miau" << std::endl;
+    }
+
+    void operator+(const Cat &)
+    {
+        std::cout << "Cats like each other!" << std::endl;
+    }
+
+    void operator+(const Bird &)
+    {
+        std::cerr << "Cat and Bird don't like each other!" << std::endl;
+    }
+};
 
 class Bird : public Animal
 {
-    public:
-    explicit Bird(const std::string& name_par)
-    {
-        this->name = name_par;
-    }
-
-    void make_noise() override
+   public:
+    void make_noise() const override
     {
         std::cout << "tschirp" << std::endl;
     }
 
-    void operator+(const Bird& bird);
-    void operator+(const Cat& cat);
-};
-
-class Cat : public Animal
-{
-    public:
-    explicit Cat(const std::string& name_par)
+    void operator+(const Cat &)
     {
-        this->name = name_par;
-        
+        std::cerr << "Bird and Cat don't like each other!" << std::endl;
     }
 
-    void make_noise() override
+    void operator+(const Bird &)
     {
-        std::cout << "grhh" << std::endl;
-    }
-
-    void operator+(const Bird& bird)
-    {
-        std::cout << bird.name << " wrid von " << name << " gejagt!" << std::endl;
-    }
-
-    void operator+(const Cat& cat)
-    {
-        std::cout << name << "und " << cat.name << " spielen Zusammen!" << std::endl;
+        std::cout << "Birds like each other!" << std::endl;
     }
 };
-
-void Bird::operator+(const Bird& bird)
-{
-    std::cout << name << " und " << bird.name << " fliegen zum Süden" << std::endl;
-}
-
-void Bird::operator+(const Cat& cat)
-{
-    std::cout << name << " flieht vor " << cat.name << std::endl;
-}
-
 
 auto main() -> int
 {
-    Cat cat("Katze1");
-    Cat cat2("Katze2");
-    Bird bird("Vogel1");
-    Bird bird2("Vogel2");
+    std::vector<std::shared_ptr<Animal>> animals;
 
-    cat.make_noise();
-    bird.make_noise();
+    animals.reserve(10);
+    for(int i = 0; i < 10; i++)
+    {
+        if(std::rand() > RAND_MAX / 2)
+        {
+            animals.push_back(std::make_shared<Bird>());
+        }
+        else
+        {
+            animals.push_back(std::make_shared<Cat>());
+        }
+    } 
 
-    cat + cat2;
-    cat + bird;
-    bird + cat;
-    bird + bird2;
-    
-
+    for(const auto& itr : animals)
+    {
+        itr->make_noise();
+    }
     return 0;
 }
