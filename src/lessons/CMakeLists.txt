@@ -13,3 +13,4 @@ add_compile_options(-Wall -Wextra -pedantic -O0)
 
 # add an executabel and assign files to it
 add_executable(lessons lessons.cpp)
+
