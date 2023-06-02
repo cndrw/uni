@@ -1,8 +1,9 @@
 #include <cstdint>
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
+#include <exception>
 class Animal
 {
    public:
@@ -49,26 +50,24 @@ class Bird : public Animal
     }
 };
 
+struct MyException : std::exception
+{
+    const char *what() const noexcept override
+    {
+        return "My own Exception";
+    }
+};
+
 auto main() -> int
 {
-    std::vector<std::shared_ptr<Animal>> animals;
-
-    animals.reserve(10);
-    for(int i = 0; i < 10; i++)
+    try
     {
-        if(std::rand() > RAND_MAX / 2)
-        {
-            animals.push_back(std::make_shared<Bird>());
-        }
-        else
-        {
-            animals.push_back(std::make_shared<Cat>());
-        }
-    } 
-
-    for(const auto& itr : animals)
-    {
-        itr->make_noise();
+        throw MyException();
     }
+    catch (const MyException &my_exception)
+    {
+        std::cerr << my_exception.what() << std::endl;
+    }
+
     return 0;
 }

@@ -20,6 +20,7 @@ if(OpenCV_FOUND)
     add_executable(opencv_test opencv.cpp)
     # include and link all opencv stuff
     target_compile_definitions(opencv_test PRIVATE OUTPATH="${CMAKE_CURRENT_BINARY_DIR}")
+    target_compile_definitions(opencv_test PRIVATE IMPATH="${CMAKE_CURRENT_BINARY_DIR}")
     target_include_directories(opencv_test PUBLIC ${OpenCV_INCLUDE_DIRS} )
     target_link_libraries( opencv_test ${OpenCV_LIBRARIES})
 endif()
