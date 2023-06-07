@@ -4,70 +4,23 @@
 #include <string>
 #include <vector>
 #include <exception>
-class Animal
+
+class Developer
 {
-   public:
-    virtual void make_noise() const = 0;
-};
-
-class Bird;
-
-class Cat : public Animal
-{
-   public:
-    void make_noise() const override
+    private:
+    std::string m_name;
+    public:
+    Developer(const std::string& name) : m_name{name}{}
+    auto get_name() const -> const std::string
     {
-        std::cout << "miau" << std::endl;
-    }
-
-    void operator+(const Cat &)
-    {
-        std::cout << "Cats like each other!" << std::endl;
-    }
-
-    void operator+(const Bird &)
-    {
-        std::cerr << "Cat and Bird don't like each other!" << std::endl;
+        return m_name;
     }
 };
 
-class Bird : public Animal
-{
-   public:
-    void make_noise() const override
-    {
-        std::cout << "tschirp" << std::endl;
-    }
-
-    void operator+(const Cat &)
-    {
-        std::cerr << "Bird and Cat don't like each other!" << std::endl;
-    }
-
-    void operator+(const Bird &)
-    {
-        std::cout << "Birds like each other!" << std::endl;
-    }
-};
-
-struct MyException : std::exception
-{
-    const char *what() const noexcept override
-    {
-        return "My own Exception";
-    }
-};
 
 auto main() -> int
 {
-    try
-    {
-        throw MyException();
-    }
-    catch (const MyException &my_exception)
-    {
-        std::cerr << my_exception.what() << std::endl;
-    }
-
+    Developer dev("Marius");
+    std::cout << dev.get_name() << std::endl;
     return 0;
 }

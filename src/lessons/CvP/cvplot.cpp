@@ -11,12 +11,22 @@
 
 auto main() -> int
 {
-    rapidcsv::Document doc("colhdr.csv");
-    std::vector<float> col = doc.GetColumn<float>("DATE");
-    std::vector<float> row = doc.GetColumn<float>("TAVG");
+    rapidcsv::Document doc("colhdr.csv", rapidcsv::LabelParams(0, 0),
+                           rapidcsv::SeparatorParams(), rapidcsv::ConverterParams(true));
+
+    auto dates = doc.GetColumn<int>("DATE");
+    auto tavg = doc.GetColumn<float>("TAVG");
+    auto tmin = doc.GetColumn<float>("EMNT");
+    auto tmax = doc.GetColumn<float>("EMXT");
+
     auto axes = CvPlot::makePlotAxes();
-    axes.create<CvPlot::Series>(row, col, "-g");
-    // auto axes = CvPlot::plot(std::vector<double>{3, 3, 4, 6, 4, 3}, "-o");
-    cv::Mat plot = axes.render(300,400);
-    cv::imwrite(std::string(OUTPATH) + "/plot.jpg", plot);  
+    axes.create<CvPlot::Series>(dates, tavg, "-g");
+    axes.create<CvPlot::Series>(dates, tmin, "-g");
+    axes.create<CvPlot::Series>(dates, tmax, "-g");
+
+    axes.yLabel("Temperatur in Degree");
+    axes.xLabel("Year");
+    axes.title("Weather in Konstanz over the years");
+    cv::Mat plot = axes.render(600, 800);
+    cv::imwrite(std::string(OUTPATH) + "/plot.png", plot);  
 }
