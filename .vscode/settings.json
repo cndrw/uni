@@ -86,6 +86,7 @@
         "queue": "cpp",
         "map": "cpp",
         "set": "cpp",
-        "__tree": "cpp"
+        "__tree": "cpp",
+        "*.ipp": "cpp"
     },
 }
