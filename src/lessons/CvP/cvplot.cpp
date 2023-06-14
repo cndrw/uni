@@ -11,22 +11,17 @@
 
 auto main() -> int
 {
-    rapidcsv::Document doc("colhdr.csv", rapidcsv::LabelParams(0, 0),
-                           rapidcsv::SeparatorParams(), rapidcsv::ConverterParams(true));
+    rapidcsv::Document doc("uncertainty.csv"); 
 
-    auto dates = doc.GetColumn<int>("DATE");
-    auto tavg = doc.GetColumn<float>("TAVG");
-    auto tmin = doc.GetColumn<float>("EMNT");
-    auto tmax = doc.GetColumn<float>("EMXT");
+    auto x_values = doc.GetColumn<float>("x values");
+    auto y_values = doc.GetColumn<float>("y values");
 
     auto axes = CvPlot::makePlotAxes();
-    axes.create<CvPlot::Series>(dates, tavg, "-g");
-    axes.create<CvPlot::Series>(dates, tmin, "-g");
-    axes.create<CvPlot::Series>(dates, tmax, "-g");
+    axes.create<CvPlot::Series>(x_values, y_values, ".r");
 
-    axes.yLabel("Temperatur in Degree");
-    axes.xLabel("Year");
-    axes.title("Weather in Konstanz over the years");
+    axes.xLabel("x-Axes");
+    axes.yLabel("y-Axes");
+    axes.title("Uncertainty Ellipse");
     cv::Mat plot = axes.render(600, 800);
-    cv::imwrite(std::string(OUTPATH) + "/plot.png", plot);  
+    cv::imwrite(std::string(OUTPATH) + "/uncertaintyplot.png", plot);  
 }

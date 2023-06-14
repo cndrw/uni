@@ -1,5 +1,3 @@
-
-
 cmake_minimum_required(VERSION 3.20)
 
 project(opencv_project VERSION 1.0 LANGUAGES CXX)
@@ -34,6 +32,11 @@ if(OpenCV_FOUND)
         GIT_TAG origin/master) # or whatever tag you want
     FetchContent_MakeAvailable(rapidcsv)
 
+    FetchContent_Declare(armadillo
+        GIT_REPOSITORY https://gitlab.com/conradsnicta/armadillo-code
+        GIT_TAG origin/master)
+    FetchContent_MakeAvailable(armadillo)
+
     # add executable for cvplot hello world
     add_executable(cvplot_hello cvplot.cpp)
     target_include_directories(cvplot_hello PUBLIC ${OpenCV_INCLUDE_DIRS} ${cvplot_SOURCE_DIR}/CvPlot/inc)
@@ -46,5 +49,13 @@ if(OpenCV_FOUND)
     target_compile_definitions(cvplot_hello PRIVATE OUTPATH="${CMAKE_CURRENT_BINARY_DIR}")
     target_compile_definitions( cvplot_hello PRIVATE IMPATH="${CMAKE_CURRENT_BINARY_DIR}")
     target_include_directories(cvplot_hello PUBLIC ${OpenCV_INCLUDE_DIRS} )
-    target_link_libraries( cvplot_hello ${OpenCV_LIBRARIES})
+
+    # target_compile_definitions(uncertainty_ellipse PRIVATE RESOURCEPATH="${CMAKE_CURRENT_LIST_DIR}/resources")
+    # target_include_directories(uncertainty_ellipse PUBLIC 
+    #     ${OpenCV_INCLUDE_DIRS} 
+    #     ${cvplot_SOURCE_DIR}/CvPlot/inc
+    #     ${armadillo_SOURCE_DIR}/include)
+    # target_link_libraries(uncertainty_ellipse rapidcsv ${OpenCV_LIBRARIES} armadillo)
+    target_include_directories(cvplot_hello ${armadillo_SOURCE_DIR}/include)
+    target_link_libraries(cvplot_hello armadillo)
 endif()
