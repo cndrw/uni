@@ -5,22 +5,15 @@
 #include <vector>
 #include <exception>
 
-class Developer
+int fib(int k)
 {
-    private:
-    std::string m_name;
-    public:
-    Developer(const std::string& name) : m_name{name}{}
-    auto get_name() const -> const std::string
-    {
-        return m_name;
-    }
-};
-
+    return k == 0 ? 0 :  k == 1 ? 1 : fib(k-1) + fib(k-2);
+}
 
 auto main() -> int
 {
-    Developer dev("Marius");
-    std::cout << dev.get_name() << std::endl;
+    int num;
+    scanf("%d", &num);
+    std::cout << fib(num) << std::endl;
     return 0;
 }
